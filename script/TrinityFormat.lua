@@ -10,15 +10,15 @@ function resetop(e,tp,eg,ep,ev,re,r,rp)
 	lim[3]=0
 end
 function sumexcess(c,tp,lc)
-	return c:IsType(TYPE_EFFECT+TYPE_DUAL) and not c:IsSummonType(SUMMON_TYPE_DUAL) and c:GetSummonPlayer()==tp and c:GetSummonLocation()==lc
+	return c:IsType(TYPE_EFFECT+TYPE_GEMINI) and not c:IsSummonType(SUMMON_TYPE_GEMINI) and c:GetSummonPlayer()==tp and c:GetSummonLocation()==lc
 end
 function checkop(e,tp,eg,ep,ev,re,r,rp)
 	local ps=0
     for tc in aux.Next(eg) do
 		local p=tc:GetSummonPlayer()
 		ps=ps|1<<p
-		if lim[p]==0 and (tc:IsSummonType(SUMMON_TYPE_DUAL) or tc:IsCode(45467446,86489182)) then lim[p+2]=lim[p+2]-1 end
-        if tc:IsType(TYPE_EFFECT+TYPE_DUAL) or tc:IsFacedown() then lim[p]=lim[p]-1 end
+		if lim[p]==0 and (tc:IsSummonType(SUMMON_TYPE_GEMINI) or tc:IsCode(45467446,86489182)) then lim[p+2]=lim[p+2]-1 end
+        if tc:IsType(TYPE_EFFECT+TYPE_GEMINI) or tc:IsFacedown() then lim[p]=lim[p]-1 end
 	end
 	for p=0,1 do
 		if ps&1<<p~=0 and lim[p]<lim[p+2] then
